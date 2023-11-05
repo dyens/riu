@@ -17,6 +17,11 @@ moltoCresc = \markup {\italic "molto cresc." }
 pesanteF = \markup {\italic "pesante" \dynamic "f"}
 port =\markup { \italic "port." }
 
+lyric_transcription = {
+\override LyricText.font-shape = #'italic
+\override LyricText.font-size = #'0.3
+}
+
 global = {
   \key c \major
   \time 2/4
@@ -67,6 +72,4 @@ global = {
              cue-clef
              custos))
   
-
-
 }

@@ -6,6 +6,16 @@
 \include "tenor.ly"
 \include "lyrics.ly"
 
+BEFORE_R = R1*13
+BEFORE_II = R1*28
+BEFORE_III = R1*44
+BEFORE_IV = R1*60
+BEFORE_V = R1*48
+
+PI = R1*13
+PR = R1*15
+PA = R1*16
+
 leadVoice = {
    \set Staff.midiMinimumVolume = #0.8
    \set Staff.midiMaximumVolume = #1.0
@@ -29,112 +39,126 @@ backVoice = {
   composer = "Mateo Flecha el Viejo"
   arranger = "Николаев С. А."
   tagline = "Библиотека Adeptus Chorus"
-  copyright = "Copyright © 2023 by the CPDL"
 }
 
 
 \book {
   \bookOutputSuffix "Choir"
   \paper {
-  indent = 0     % don't indent first system
-  % page-count = #3
+     indent = 0     % don't indent first system
   }
+  % \markup \vspace #3
 
+
+  \score {
+    \midi {
+      \tempo 4 = 140
+    }
+    \layout {
+      \context {
+        \Staff
+        \RemoveAllEmptyStaves
+        \consists Keep_alive_together_engraver
+      }
+    }
 
   \new ChoirStaff <<
-    \new Staff = "I" \with {
-      \consists Merge_rests_engraver
+
+    \new Staff = "TB" \with {
      instrumentName = "T B"
      shortInstrumentName = "T B"
     } <<
-    \new Voice = "BassI" << {\bassI} >>
+      \new Voice = "TB" << {
+        \bassI
+        \PR
+        \bassII
+        \PA
+        \bassIV
+      }  >>
     >>
-    \new Lyrics \lyricsto "BassI" \LI
-  >>
+    \new Lyrics \lyricsto "TB" { \LI \LII \LIV}
+    \new Lyrics \lyricsto "TB" { \LTI \LTII \LTIV }
 
-
-
-  \new ChoirStaff <<
+    \new Staff = "SA" \with {
+     instrumentName = "S A"
+     shortInstrumentName = "S A"
+    } <<
+      \new Voice = "SA" << {
+        \PI
+        \PR
+        \PA
+        \sopranoIII
+      }  >>
+    >>
+    \new Lyrics \lyricsto "SA" { \LIII }
+    \new Lyrics \lyricsto "SA" { \LTIII }
 
 
     \new Staff = "SR" \with {
      instrumentName = "S"
      shortInstrumentName = "S"
-    } <<
-    \new Voice = "SopranoR" {\sopranoR}
-    \new Lyrics \lyricsto "SopranoR" \LSopranoR
+    }  <<
+      \new Voice = "SopranoR" {
+        \BEFORE_R \sopranoR
+        \BEFORE_V \sectionLabel "IV" \sopranoV
+      }
+      \new Lyrics \lyricsto "SopranoR" {
+        \LSopranoR \LSopranoV
+      }
+
+      \new Lyrics \lyricsto "SopranoR" {
+        \LTSopranoR  \LTSopranoV
+      }
     >>
 
     \new Staff = "AR" \with {
      instrumentName = "A"
      shortInstrumentName = "A"
     } <<
-    \new Voice = "AltR" {\altR}
-    \new Lyrics \lyricsto "AltR" \LAltR
+      \new Voice = "AltR" {
+        \BEFORE_R \altR
+        \BEFORE_V \altV
+      }
+      \new Lyrics \lyricsto "AltR" {
+        \LAltR \LAltV
+      }
+      \new Lyrics \lyricsto "AltR" {
+        \LTAltR \LTAltV
+      }
     >>
 
     \new Staff = "TR" \with {
      instrumentName = "T"
      shortInstrumentName = "T"
     } <<
-    \new Voice = "TenorR" {\tenorR}
-    \new Lyrics \lyricsto "TenorR" \LTenorR
+      \new Voice = "TenorR" {
+        \BEFORE_R \tenorR
+        \BEFORE_V \tenorV
+      }
+      \new Lyrics \lyricsto "TenorR" {
+        \LTenorR \LTenorV
+       }
+      \new Lyrics \lyricsto "TenorR" {
+        \LTTenorR \LTTenorV
+      }
     >>
 
     \new Staff = "BR" \with {
      instrumentName = "B"
      shortInstrumentName = "B"
     } <<
-    \new Voice = "BassR" {\bassR}
-    \new Lyrics \lyricsto "BassR" \LBassR
+      \new Voice = "BassR" {
+        \BEFORE_R \bassR
+        \BEFORE_V \bassV
+      }
+      \new Lyrics \lyricsto "BassR" {
+        \LBassR \LBassV
+      }
+      \new Lyrics \lyricsto "BassR" {
+        \LTBassR \LTBassV
+      }
     >>
   >>
-
-  \new StaffGroup <<
-    \new Staff = "II" \with {
-      \consists Merge_rests_engraver
-     instrumentName = "T B"
-     shortInstrumentName = "T B"
-    } <<
-    \new Voice = "BassII" << {\bassII} >>
-    >>
-    \new Lyrics \lyricsto "BassII" \LII
-  >>
-
-  \new StaffGroup <<
-    \new Staff = "III" \with {
-      \consists Merge_rests_engraver
-     instrumentName = "S A"
-     shortInstrumentName = "S A"
-    } <<
-    \new Voice = "SopranoIII" << {\sopranoIII} >>
-    >>
-    \new Lyrics \lyricsto "SopranoIII" \LIII
-  >>
-
-  \new StaffGroup <<
-    \new Staff = "IV" \with {
-      \consists Merge_rests_engraver
-     instrumentName = "T B"
-     shortInstrumentName = "T B"
-    } <<
-    \new Voice = "BassIV" << {\bassIV} >>
-    >>
-    \new Lyrics \lyricsto "BassIV" \LIV
-  >>
-
-
-
-
-
-
-
-
-  \score {
-    \midi {
-    }
-    \new StaffGroup <<
-      \new Voice = "BassVoice" << { \global \leadVoice \bassI} >>
-    >>
   }
+
 }
