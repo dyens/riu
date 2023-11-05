@@ -1,4 +1,5 @@
 \include "global.ly"
+\include "theme.ly"
 
 altR = \relative c'' {
   \global
@@ -8,3 +9,7 @@ altR = \relative c'' {
   r2 e4 e | d c e c | d2 c4 a( | a) a a a | a2 a2 \break
 }
 
+sopranoIII = \relative {
+  \global
+  \themeIII
+}

@@ -41,7 +41,7 @@ backVoice = {
   }
 
 
-  \new StaffGroup <<
+  \new ChoirStaff <<
     \new Staff = "I" \with {
       \consists Merge_rests_engraver
      instrumentName = "T B"
@@ -54,7 +54,9 @@ backVoice = {
 
 
 
-  \new StaffGroup <<
+  \new ChoirStaff <<
+
+
     \new Staff = "SR" \with {
      instrumentName = "S"
      shortInstrumentName = "S"
@@ -98,6 +100,30 @@ backVoice = {
     >>
     \new Lyrics \lyricsto "BassII" \LII
   >>
+
+  \new StaffGroup <<
+    \new Staff = "III" \with {
+      \consists Merge_rests_engraver
+     instrumentName = "S A"
+     shortInstrumentName = "S A"
+    } <<
+    \new Voice = "SopranoIII" << {\sopranoIII} >>
+    >>
+    \new Lyrics \lyricsto "SopranoIII" \LIII
+  >>
+
+  \new StaffGroup <<
+    \new Staff = "IV" \with {
+      \consists Merge_rests_engraver
+     instrumentName = "T B"
+     shortInstrumentName = "T B"
+    } <<
+    \new Voice = "BassIV" << {\bassIV} >>
+    >>
+    \new Lyrics \lyricsto "BassIV" \LIV
+  >>
+
+
 
 
 

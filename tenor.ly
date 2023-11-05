@@ -24,3 +24,10 @@ tenorII = \relative c'' {
   \transposition c 
   \themeII
 }
+
+tenorIV = \relative c'' {
+  \global
+  \time 2/2
+  \transposition c 
+  \themeIV
+}

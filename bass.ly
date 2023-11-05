@@ -21,3 +21,9 @@ bassII = \relative {
   \clef F
   \themeII
 }
+
+bassIV = \relative {
+  \global
+  \clef F
+  \themeIV
+}
